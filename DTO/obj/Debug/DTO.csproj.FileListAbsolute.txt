@@ -1,0 +1,6 @@
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\bin\Debug\DTO.dll
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\bin\Debug\DTO.pdb
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\obj\Debug\DTO.dll
+C:\Users\noa\Pictures\WebApi-Wine World\DTO\obj\Debug\DTO.pdb

@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Answers">
+    <Key>
+      <PropertyRef Name="answerNumber" />
+    </Key>
+    <Property Name="answerNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="questionNumber" Type="int" Nullable="false" />
+    <Property Name="answerContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CategoryProduct">
+    <Key>
+      <PropertyRef Name="categoryId" />
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="categoryId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderDate" Type="date" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="money" Nullable="false" />
+    <Property Name="yearProduction" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="wineId" Type="int" />
+    <Property Name="productTypeId" Type="int" />
+    <Property Name="tasteId" Type="int" />
+    <Property Name="percentageAlcohol" Type="float" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="productTypeId" />
+    </Key>
+    <Property Name="productTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Questionnaire">
+    <Key>
+      <PropertyRef Name="questionNumber" />
+    </Key>
+    <Property Name="questionNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="questionContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="Recipes">
+    <Key>
+      <PropertyRef Name="recipeId" />
+    </Key>
+    <Property Name="recipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="recipeName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="recipeImage" Type="image" Nullable="false" />
+    <Property Name="recipeType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeType">
+    <Key>
+      <PropertyRef Name="recipeTypeId" />
+    </Key>
+    <Property Name="recipeTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tastes">
+    <Key>
+      <PropertyRef Name="tasteId" />
+    </Key>
+    <Property Name="tasteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameTaste" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserOrder">
+    <Key>
+      <PropertyRef Name="orderId" />
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="orderId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="bornDate" Type="datetime" Nullable="false" />
+    <Property Name="points" Type="int" />
+    <Property Name="mail" Type="nvarchar" MaxLength="30" />
+    <Property Name="password" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="userIdentity" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="houseNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Answers_Questionnaire">
+    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
+    <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questionnaire">
+        <PropertyRef Name="questionNumber" />
+      </Principal>
+      <Dependent Role="Answers">
+        <PropertyRef Name="questionNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryProduct_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="CategoryProduct">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryProduct_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="CategoryProduct">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductsType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="productTypeId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="productTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Tastes">
+    <End Role="Tastes" Type="Self.Tastes" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tastes">
+        <PropertyRef Name="tasteId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="tasteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipes_RecipeType">
+    <End Role="RecipeType" Type="Self.RecipeType" Multiplicity="1" />
+    <End Role="Recipes" Type="Self.Recipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecipeType">
+        <PropertyRef Name="recipeTypeId" />
+      </Principal>
+      <Dependent Role="Recipes">
+        <PropertyRef Name="recipeType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserOrder_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="UserOrder">
+        <PropertyRef Name="orderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserOrder_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="UserOrder">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recipes" EntityType="Self.Recipes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecipeType" EntityType="Self.RecipeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tastes" EntityType="Self.Tastes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryProduct" EntityType="Self.CategoryProduct" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CategoryProduct].[categoryId] AS [categoryId], 
+    [CategoryProduct].[productId] AS [productId]
+    FROM [dbo].[CategoryProduct] AS [CategoryProduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserOrder" EntityType="Self.UserOrder" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserOrder].[orderId] AS [orderId], 
+    [UserOrder].[productId] AS [productId]
+    FROM [dbo].[UserOrder] AS [UserOrder]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Answers_Questionnaire" Association="Self.FK_Answers_Questionnaire">
+      <End Role="Questionnaire" EntitySet="Questionnaire" />
+      <End Role="Answers" EntitySet="Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryProduct_Category" Association="Self.FK_CategoryProduct_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="CategoryProduct" EntitySet="CategoryProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryProduct_Products" Association="Self.FK_CategoryProduct_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CategoryProduct" EntitySet="CategoryProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductsType" Association="Self.FK_Products_ProductsType">
+      <End Role="ProductType" EntitySet="ProductType" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Tastes" Association="Self.FK_Products_Tastes">
+      <End Role="Tastes" EntitySet="Tastes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipes_RecipeType" Association="Self.FK_Recipes_RecipeType">
+      <End Role="RecipeType" EntitySet="RecipeType" />
+      <End Role="Recipes" EntitySet="Recipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="UserOrder" EntitySet="UserOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserOrder_Products" Association="Self.FK_UserOrder_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="UserOrder" EntitySet="UserOrder" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="QuestioId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Questionnaire" Relationship="Self.FK_Answer_Questionnaire" FromRole="Answer" ToRole="Questionnaire" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Product" Relationship="Self.CategoryProduct" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Orders_User" FromRole="Order" ToRole="User" />
+    <NavigationProperty Name="UserOrder" Relationship="Self.FK_UserOrder_Orders" FromRole="Order" ToRole="UserOrder" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="YearProduction" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WineId" Type="Int32" />
+    <Property Name="ProductTypeId" Type="Int32" />
+    <Property Name="TasteId" Type="Int32" />
+    <Property Name="PercentageAlcohol" Type="Double" />
+    <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductsType" FromRole="Product" ToRole="ProductType" />
+    <NavigationProperty Name="Taste" Relationship="Self.FK_Product_Taste" FromRole="Product" ToRole="Taste" />
+    <NavigationProperty Name="UserOrder" Relationship="Self.FK_UserOrder_Products" FromRole="Product" ToRole="UserOrder" />
+    <NavigationProperty Name="Category" Relationship="Self.CategoryProduct" FromRole="Product" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductsType" FromRole="ProductType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Questionnaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_Questionnaire" FromRole="Questionnaire" ToRole="Answer" />
+  </EntityType>
+  <EntityType Name="Recipe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="RecipeTypeId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecipeType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Taste">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Taste" FromRole="Taste" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Points" Type="Int32" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HouseNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Orders_User" FromRole="User" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="UserOrder">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="Price" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_UserOrder_Orders" FromRole="UserOrder" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_UserOrder_Products" FromRole="UserOrder" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Answer_Questionnaire">
+    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questionnaire">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="QuestioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserOrder_Orders">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserOrder">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductsType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Taste">
+    <End Role="Taste" Type="Self.Taste" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taste">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="TasteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserOrder_Products">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserOrder">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryProduct">
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Wine_WorldEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Answer" EntityType="Self.Answer" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+    <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" />
+    <EntitySet Name="Recipe" EntityType="Self.Recipe" />
+    <EntitySet Name="RecipeType" EntityType="Self.RecipeType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Taste" EntityType="Self.Taste" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserOrder" EntityType="Self.UserOrder" />
+    <AssociationSet Name="FK_Answer_Questionnaire" Association="Self.FK_Answer_Questionnaire">
+      <End Role="Questionnaire" EntitySet="Questionnaire" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="UserOrder" EntitySet="UserOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductsType" Association="Self.FK_Product_ProductsType">
+      <End Role="ProductType" EntitySet="ProductType" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Taste" Association="Self.FK_Product_Taste">
+      <End Role="Taste" EntitySet="Taste" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserOrder_Products" Association="Self.FK_UserOrder_Products">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="UserOrder" EntitySet="UserOrder" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryProduct" Association="Self.CategoryProduct">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
