@@ -12,6 +12,7 @@ namespace BLL
     {
         public List<CategoryDto> Get()
         {
+            //ביחד עם שרה
             using (Wine_WorldEntities db = new Wine_WorldEntities())
             {
                 return Convertion.CategoryConvertion.Convert(db.Category.ToList());
