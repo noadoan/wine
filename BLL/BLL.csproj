@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AnswerService.cs" />
+    <Compile Include="CategoryService.cs" />
     <Compile Include="Convertion\AnswerConvertion.cs" />
     <Compile Include="Convertion\CategoryConvertion.cs" />
     <Compile Include="Convertion\OrderConvertion.cs" />
