@@ -218,3 +218,79 @@ C:\Users\noa\Documents\GitHub\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World
 C:\Users\noa\Documents\GitHub\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csproj.CopyComplete
 C:\Users\noa\Documents\GitHub\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.dll
 C:\Users\noa\Documents\GitHub\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.pdb
+D:\final\wine\WebApi-Wine World\bin\WebApi-Wine World.dll.config
+D:\final\wine\WebApi-Wine World\bin\WebApi-Wine World.dll
+D:\final\wine\WebApi-Wine World\bin\WebApi-Wine World.pdb
+D:\final\wine\WebApi-Wine World\bin\roslyn\csc.exe
+D:\final\wine\WebApi-Wine World\bin\roslyn\csc.exe.config
+D:\final\wine\WebApi-Wine World\bin\roslyn\csc.rsp
+D:\final\wine\WebApi-Wine World\bin\roslyn\csi.exe
+D:\final\wine\WebApi-Wine World\bin\roslyn\csi.exe.config
+D:\final\wine\WebApi-Wine World\bin\roslyn\csi.rsp
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.Managed.Core.targets
+D:\final\wine\WebApi-Wine World\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.AppContext.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Collections.Immutable.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Console.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.IO.Compression.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.IO.FileSystem.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.IO.Pipes.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Reflection.Metadata.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.AccessControl.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Claims.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Security.Principal.Windows.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.ValueTuple.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Xml.XmlDocument.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Xml.XPath.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\final\wine\WebApi-Wine World\bin\roslyn\vbc.exe
+D:\final\wine\WebApi-Wine World\bin\roslyn\vbc.exe.config
+D:\final\wine\WebApi-Wine World\bin\roslyn\vbc.rsp
+D:\final\wine\WebApi-Wine World\bin\roslyn\VBCSCompiler.exe
+D:\final\wine\WebApi-Wine World\bin\roslyn\VBCSCompiler.exe.config
+D:\final\wine\WebApi-Wine World\bin\BLL.dll
+D:\final\wine\WebApi-Wine World\bin\DTO.dll
+D:\final\wine\WebApi-Wine World\bin\EntityFramework.dll
+D:\final\wine\WebApi-Wine World\bin\EntityFramework.SqlServer.dll
+D:\final\wine\WebApi-Wine World\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\final\wine\WebApi-Wine World\bin\Newtonsoft.Json.dll
+D:\final\wine\WebApi-Wine World\bin\System.Net.Http.Formatting.dll
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.dll
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.WebHost.dll
+D:\final\wine\WebApi-Wine World\bin\DAL.dll
+D:\final\wine\WebApi-Wine World\bin\BLL.pdb
+D:\final\wine\WebApi-Wine World\bin\BLL.dll.config
+D:\final\wine\WebApi-Wine World\bin\DTO.pdb
+D:\final\wine\WebApi-Wine World\bin\EntityFramework.xml
+D:\final\wine\WebApi-Wine World\bin\EntityFramework.SqlServer.xml
+D:\final\wine\WebApi-Wine World\bin\Newtonsoft.Json.xml
+D:\final\wine\WebApi-Wine World\bin\System.Net.Http.Formatting.xml
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.xml
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.WebHost.xml
+D:\final\wine\WebApi-Wine World\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\final\wine\WebApi-Wine World\bin\DAL.pdb
+D:\final\wine\WebApi-Wine World\bin\DAL.dll.config
+D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csprojAssemblyReference.cache
+D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csproj.CoreCompileInputs.cache
+D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csproj.CopyComplete
+D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.dll
+D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.pdb
