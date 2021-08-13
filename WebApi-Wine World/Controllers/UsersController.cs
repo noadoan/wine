@@ -6,8 +6,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BLL;
+using System.Web.Http.Cors;
+
 namespace WebApi_Wine_World.Controllers
 {
+    [EnableCors(origins: "*", methods: "*", headers: "*")]
     public class UsersController : ApiController
     {
         UserService UserService = new UserService();
@@ -17,16 +20,16 @@ namespace WebApi_Wine_World.Controllers
         {
             return UserService.GetUsers();
         }
-     
+
         //IHttpActionResult status הבקשה
         // GET: api/Users/5
-    //     if (user.mail =="")
-    //            return BadRequest("נשלח מייל לא תקין");//400
-    //        if (user.userId==0)
-    //            return NotFound();//404
-    //        ////
-    //        return Ok(user);///status code 200;
-    //}
+        //     if (user.mail =="")
+        //            return BadRequest("נשלח מייל לא תקין");//400
+        //        if (user.userId==0)
+        //            return NotFound();//404
+        //        ////
+        //        return Ok(user);///status code 200;
+        //}
         public UsersDto Get(int id)
         {
             return UserService.GetUsers(id);///status code 200;
@@ -35,7 +38,7 @@ namespace WebApi_Wine_World.Controllers
         // POST: api/Users
         public IHttpActionResult Post(UsersDto user)
         {
-            return Ok( UserService.Post(user));
+            return Ok(UserService.Post(user));
         }
 
         // PUT: api/Users/5

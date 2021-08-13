@@ -25,8 +25,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="UserId" Type="Int32" />
-    <NavigationProperty Name="User" Relationship="Self.FK_Orders_User" FromRole="Order" ToRole="User" />
     <NavigationProperty Name="UserOrder" Relationship="Self.FK_UserOrder_Orders" FromRole="Order" ToRole="UserOrder" />
+    <NavigationProperty Name="User" Relationship="Model.FK_Orders_User" FromRole="Order" ToRole="User" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -97,23 +97,6 @@
     <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Product_Taste" FromRole="Taste" ToRole="Product" />
   </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="LastName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-    <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Points" Type="Int32" />
-    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Address" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="City" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="HouseNumber" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Orders_User" FromRole="User" ToRole="Order" />
-  </EntityType>
   <EntityType Name="UserOrder">
     <Key>
       <PropertyRef Name="ProductId" />
@@ -135,18 +118,6 @@
       </Principal>
       <Dependent Role="Answer">
         <PropertyRef Name="QuestioId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Orders_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -213,15 +184,10 @@
     <EntitySet Name="RecipeType" EntityType="Self.RecipeType" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Taste" EntityType="Self.Taste" />
-    <EntitySet Name="User" EntityType="Self.User" />
     <EntitySet Name="UserOrder" EntityType="Self.UserOrder" />
     <AssociationSet Name="FK_Answer_Questionnaire" Association="Self.FK_Answer_Questionnaire">
       <End Role="Questionnaire" EntitySet="Questionnaire" />
       <End Role="Answer" EntitySet="Answer" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
       <End Role="Order" EntitySet="Order" />
@@ -243,5 +209,39 @@
       <End Role="Category" EntitySet="Category" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
+    <EntitySet Name="User" EntityType="Model.User" />
+    <AssociationSet Name="FK_Orders_User" Association="Model.FK_Orders_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Points" Type="Int32" />
+    <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="HouseNumber" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Model.FK_Orders_User" FromRole="User" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_Orders_User">
+    <End Type="Model.User" Role="User" Multiplicity="0..1" />
+    <End Type="Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

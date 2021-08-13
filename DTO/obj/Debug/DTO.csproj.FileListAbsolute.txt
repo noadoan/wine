@@ -10,3 +10,9 @@ C:\Users\noa\Documents\GitHub\wine\DTO\obj\Debug\DTO.csprojAssemblyReference.cac
 C:\Users\noa\Documents\GitHub\wine\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 C:\Users\noa\Documents\GitHub\wine\DTO\obj\Debug\DTO.dll
 C:\Users\noa\Documents\GitHub\wine\DTO\obj\Debug\DTO.pdb
+D:\final\wine\DTO\bin\Debug\DTO.dll
+D:\final\wine\DTO\bin\Debug\DTO.pdb
+D:\final\wine\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+D:\final\wine\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\final\wine\DTO\obj\Debug\DTO.dll
+D:\final\wine\DTO\obj\Debug\DTO.pdb

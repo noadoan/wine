@@ -12,7 +12,7 @@ namespace BLL
     {
         public List<AnswerDto> Get()
         {
-            using (Wine_WorldEntities db = new Wine_WorldEntities())
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
                 return Convertion.AnswerConvertion.Convert(db.Answer.ToList());
             }
@@ -20,7 +20,7 @@ namespace BLL
         }
         public AnswerDto Get(int id)
         {
-            using (Wine_WorldEntities db = new Wine_WorldEntities())
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
                 return Convertion.AnswerConvertion.Convert(db.Answer.FirstOrDefault(x => x.Id == id));
             }
@@ -28,7 +28,7 @@ namespace BLL
        
         public AnswerDto Post(AnswerDto AnswerDto)
         {
-            using (Wine_WorldEntities db = new Wine_WorldEntities())
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
                 Answer Answer = db.Answer.Add(Convertion.AnswerConvertion.Convert(AnswerDto));
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace BLL
         }
         public AnswerDto Put(AnswerDto AnswerDto, int id)
         {
-            using (Wine_WorldEntities db = new Wine_WorldEntities())
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
                 Answer Answer = db.Answer.FirstOrDefault(x => x.Id == id);
                 if (Answer == null)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DTO
 {
-    public class ProductsDto
+    public class ProductDto
     {
 
         public int Id { get; set; }

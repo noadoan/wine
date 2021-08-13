@@ -15,15 +15,15 @@
         <EntityTypeShape EntityType="Model.RecipeType" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Taste" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.UserOrder" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Answer_Questionnaire" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Orders_User" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_UserOrder_Orders" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Product_ProductsType" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Product_Taste" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_UserOrder_Products" ManuallyRouted="false" />
         <AssociationConnector Association="Model.CategoryProduct" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="11.125" />
+        <AssociationConnector Association="Model.FK_Orders_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

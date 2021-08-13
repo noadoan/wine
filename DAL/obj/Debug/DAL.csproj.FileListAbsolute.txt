@@ -21,3 +21,15 @@ C:\Users\noa\Pictures\WebApi-Wine World\DAL\obj\Debug\DAL.csproj.CoreCompileInpu
 C:\Users\noa\Pictures\WebApi-Wine World\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\noa\Pictures\WebApi-Wine World\DAL\obj\Debug\DAL.dll
 C:\Users\noa\Pictures\WebApi-Wine World\DAL\obj\Debug\DAL.pdb
+D:\final\wine\DAL\bin\Debug\DAL.dll.config
+D:\final\wine\DAL\bin\Debug\DAL.dll
+D:\final\wine\DAL\bin\Debug\DAL.pdb
+D:\final\wine\DAL\bin\Debug\EntityFramework.dll
+D:\final\wine\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\final\wine\DAL\bin\Debug\EntityFramework.xml
+D:\final\wine\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\final\wine\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\final\wine\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\final\wine\DAL\obj\Debug\DAL.dll
+D:\final\wine\DAL\obj\Debug\DAL.pdb
+D:\final\wine\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

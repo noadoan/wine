@@ -294,3 +294,6 @@ D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csproj.CoreCompileIn
 D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.csproj.CopyComplete
 D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.dll
 D:\final\wine\WebApi-Wine World\obj\Debug\WebApi-Wine World.pdb
+D:\final\wine\WebApi-Wine World\bin\System.Web.Cors.dll
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.Cors.dll
+D:\final\wine\WebApi-Wine World\bin\System.Web.Http.Cors.xml

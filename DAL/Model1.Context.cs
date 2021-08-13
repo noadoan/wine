@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Wine_WorldEntities : DbContext
+    public partial class Wine_WorldEntities1 : DbContext
     {
-        public Wine_WorldEntities()
-            : base("name=Wine_WorldEntities")
+        public Wine_WorldEntities1()
+            : base("name=Wine_WorldEntities1")
         {
         }
     
@@ -35,7 +35,7 @@ namespace DAL
         public virtual DbSet<RecipeType> RecipeType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Taste> Taste { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserOrder> UserOrder { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

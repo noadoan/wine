@@ -9,11 +9,11 @@ namespace BLL.Convertion
 {
     class ProductsConvertion
     {
-        public static ProductsDto Convert(Product obj)
+        public static ProductDto Convert(Product obj)
         {
             if (obj == null)
                 return null;
-            return new ProductsDto()
+            return new ProductDto()
             {
                 Id = obj.Id,
                 Name = obj.Name,
@@ -26,7 +26,7 @@ namespace BLL.Convertion
                 PercentageAlcohol = obj.PercentageAlcohol,
             };
         }
-        public static Product Convert(ProductsDto obj)
+        public static Product Convert(ProductDto obj)
         {
             if (obj == null)
                 return null;
@@ -43,11 +43,11 @@ namespace BLL.Convertion
                 PercentageAlcohol = obj.PercentageAlcohol,
             };
         }
-        public static List<Product> Convert(List<ProductsDto> obj)
+        public static List<Product> Convert(List<ProductDto> obj)
         {
             return obj.Select(x => Convert(x)).ToList();
         }
-        public static List<ProductsDto> Convert(List<Product> obj)
+        public static List<ProductDto> Convert(List<Product> obj)
         {
             return obj.Select(x => Convert(x)).ToList();
         }

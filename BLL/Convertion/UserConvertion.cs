@@ -14,7 +14,7 @@ namespace BLL.Convertion
         {
             if (user == null)
                 return null;
-         return   new UsersDto()
+             return  new UsersDto()
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
