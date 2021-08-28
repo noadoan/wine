@@ -19,6 +19,25 @@ namespace BLL
             }
 
         }
+        public bool GetProducts(int Id,byte[] vs)
+        {
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
+            {
+                Product p= db.Product.FirstOrDefault(x => x.Id == Id);
+                p.img = vs;
+                db.SaveChanges();
+                return true;
+            }
+
+        }
+        public List<ProductDto> GetProduct(int productType)
+        {
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
+            {
+                return Convertion.ProductsConvertion.Convert(db.Product.Where(x=>x.ProductTypeId==productType).ToList());
+            }
+
+        }
         public ProductDto GetProducts(int id)
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())

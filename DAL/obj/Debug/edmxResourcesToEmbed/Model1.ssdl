@@ -47,6 +47,7 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
     <Property Name="ProductTypeId" Type="int" />
     <Property Name="TasteId" Type="int" />
     <Property Name="PercentageAlcohol" Type="float" />
+    <Property Name="img" Type="image" />
   </EntityType>
   <EntityType Name="ProductType">
     <Key>

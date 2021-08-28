@@ -24,6 +24,7 @@ namespace BLL.Convertion
                 ProductTypeId = obj.ProductTypeId,
                 TasteId = obj.TasteId,
                 PercentageAlcohol = obj.PercentageAlcohol,
+                img=obj.img
             };
         }
         public static Product Convert(ProductDto obj)
@@ -33,6 +34,7 @@ namespace BLL.Convertion
             return new Product()
             {
                 Id = obj.Id,
+                img=obj.img,
                 Name = obj.Name,
                 Price = obj.Price,
                 YearProduction = obj.YearProduction,

@@ -30,6 +30,7 @@ namespace DAL
         public Nullable<int> ProductTypeId { get; set; }
         public Nullable<int> TasteId { get; set; }
         public Nullable<double> PercentageAlcohol { get; set; }
+        public byte[] img { get; set; }
     
         public virtual ProductType ProductType { get; set; }
         public virtual Taste Taste { get; set; }

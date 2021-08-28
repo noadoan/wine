@@ -15,5 +15,7 @@ namespace DTO
         public Nullable<int> ProductTypeId { get; set; }
         public Nullable<int> TasteId { get; set; }
         public Nullable<double> PercentageAlcohol { get; set; }
+        public byte[] img { get; set; }
+
     }
 }

@@ -28,7 +28,6 @@ namespace DAL
         public virtual DbSet<Answer> Answer { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductType> ProductType { get; set; }
         public virtual DbSet<Questionnaire> Questionnaire { get; set; }
         public virtual DbSet<Recipe> Recipe { get; set; }
@@ -37,5 +36,6 @@ namespace DAL
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserOrder> UserOrder { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }

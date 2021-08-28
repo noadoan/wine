@@ -20,14 +20,17 @@ namespace WebApi_Wine_World.Controllers
         //    BLL.UserService
         //}
 
-        UserService UserService = new UserService();
+        ProductService productService = new ProductService();
 
-        // GET: api/Users
-        public List<UsersDto> Get()
+        // GET: api/Products
+        public List<ProductDto> Get()
         {
-            return UserService.GetUsers();
+            return productService.GetProducts();
         }
-
+        public List<ProductDto> GetProd(int number)
+        {
+            return productService.GetProduct(number);
+        }
         // GET: api/Products/5
         public string Get(int id)
         {

@@ -28,21 +28,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="Model.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="YearProduction" ColumnName="YearProduction" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="WineId" ColumnName="WineId" />
-          <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
-          <ScalarProperty Name="TasteId" ColumnName="TasteId" />
-          <ScalarProperty Name="PercentageAlcohol" ColumnName="PercentageAlcohol" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductType">
       <EntityTypeMapping TypeName="Model.ProductType">
         <MappingFragment StoreEntitySet="ProductType">
@@ -106,14 +91,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CategoryProduct" TypeName="Model.CategoryProduct" StoreEntitySet="CategoryProduct">
-      <EndProperty Name="Category">
-        <ScalarProperty Name="Id" ColumnName="CategoryId" />
-      </EndProperty>
-      <EndProperty Name="Product">
-        <ScalarProperty Name="Id" ColumnName="ProductId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="Model.User">
         <MappingFragment StoreEntitySet="User">
@@ -131,5 +108,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="Model.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="PercentageAlcohol" ColumnName="PercentageAlcohol" />
+          <ScalarProperty Name="TasteId" ColumnName="TasteId" />
+          <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+          <ScalarProperty Name="WineId" ColumnName="WineId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="YearProduction" ColumnName="YearProduction" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CategoryProduct" TypeName="Model.CategoryProduct" StoreEntitySet="CategoryProduct">
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="ProductId" />
+      </EndProperty>
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="CategoryId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
