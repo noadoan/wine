@@ -10,57 +10,69 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace WebApi_Wine_World.Controllers
-{  [EnableCors(origins: "*", methods: "*", headers: "*")]
+{
+    [EnableCors(origins: "*", methods: "*", headers: "*")]
     public class ImageController : ApiController
     {
 
-            [HttpPost]
-            public HttpResponseMessage uploadImage(int Id)
-            {
-                //string imageName = null;
-                var httpReqest = HttpContext.Current.Request;
-                // upload image
-                var postedFile = httpReqest.Files["Image"];
+        [HttpPost]
+        public HttpResponseMessage uploadImage(int Id)
+        {
+            //string imageName = null;
+            var httpReqest = HttpContext.Current.Request;
+            // upload image
+            var postedFile = httpReqest.Files["Image"];
 
-                byte[] buffer = new byte[16 * 1024];
-                byte[] g;
-                using (MemoryStream ms = new MemoryStream())
+            byte[] buffer = new byte[16 * 1024];
+            byte[] g;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = postedFile.InputStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    int read;
-                    while ((read = postedFile.InputStream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        ms.Write(buffer, 0, read);
-                    }
-                    //return ms.ToArray();
-                    g = ms.ToArray();
+                    ms.Write(buffer, 0, read);
                 }
+                //return ms.ToArray();
+                g = ms.ToArray();
+            }
             ProductService productService = new ProductService();
             productService.GetProducts(Id, g);
+
+            //RecipeService recipeService = new RecipeService();
+            //recipeService.GetRecipes(Id, g);
+
+            //AnswerService answerService = new AnswerService();
+            //answerService.GetAnswers(Id, g);
+
+            //TasteService tasteService = new TasteService();
+            //tasteService.GetTaste(Id, g);
+
+
             return Request.CreateResponse(g);
         }
-            //public IHttpActionResult Get()
-            //{
-                //using (LilelileEntities db = new LilelileEntities())
-                //{
-                //    Images Imagef = db.Images.FirstOrDefault();
+        //public IHttpActionResult Get()
+        //{
+        //using (LilelileEntities db = new LilelileEntities())
+        //{
+        //    Images Imagef = db.Images.FirstOrDefault();
 
-                //    // MemoryStream mem = new MemoryStream(Imagef.Filevalue);
-                //    Stream stream = new MemoryStream(Imagef.Filevalue);
+        //    // MemoryStream mem = new MemoryStream(Imagef.Filevalue);
+        //    Stream stream = new MemoryStream(Imagef.Filevalue);
 
-                //    HttpResponseMessage response = new HttpResponseMessage();
+        //    HttpResponseMessage response = new HttpResponseMessage();
 
-                //    response.Content = new StreamContent(stream);
-                //    response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-                //    //byte[] byteArray = imageConverter.GetImageAsBytes(@"\filepath-to-image.jpeg");
-                //    List<Byte[]> imageList = new List<Byte[]>();
-                //    imageList.AddRange(db.Images.Select(x => x.Filevalue));
-                //    return Json(imageList);
+        //    response.Content = new StreamContent(stream);
+        //    response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+        //    //byte[] byteArray = imageConverter.GetImageAsBytes(@"\filepath-to-image.jpeg");
+        //    List<Byte[]> imageList = new List<Byte[]>();
+        //    imageList.AddRange(db.Images.Select(x => x.Filevalue));
+        //    return Json(imageList);
 
 
-                //}
-            //}
+        //}
+        //}
 
-        }
     }
+}
 
 

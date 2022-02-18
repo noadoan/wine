@@ -16,8 +16,8 @@ namespace BLL.Convertion
             return new QuestionnaireDto()
             {
                 Id = obj.Id,
-                Image = obj.Image,
                 QuestionContent = obj.QuestionContent,
+                Answers=AnswerConvertion.Convert(obj.Answer.ToList()),
 
 
             };
@@ -29,7 +29,6 @@ namespace BLL.Convertion
             return new Questionnaire()
             {
                 Id = obj.Id,
-                Image = obj.Image,
                 QuestionContent = obj.QuestionContent,
             };
         }

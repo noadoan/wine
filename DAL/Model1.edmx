@@ -10,19 +10,21 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AnswerContent" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="AnswerContent" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="QuestioId" Type="int" Nullable="false" />
+          <Property Name="Img" Type="image" />
+          <Property Name="Points" Type="int" />
+          <Property Name="IdTypeWine" Type="int" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CategoryProduct">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -30,6 +32,13 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
           </Key>
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -44,7 +53,7 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="YearProduction" Type="int" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -59,31 +68,32 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsWine" Type="bit" />
+          <Property Name="IsAccessory" Type="bit" />
         </EntityType>
         <EntityType Name="Questionnaire">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="QuestionContent" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="QuestionContent" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RecipeTypeId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="RecipeType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -101,25 +111,25 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Img" Type="image" />
+          <Property Name="IdTypeWine" Type="int" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="12" />
-          <Property Name="BornDate" Type="datetime" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" />
           <Property Name="Points" Type="int" />
-          <Property Name="Mail" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="City" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="HouseNumber" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserOrder">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -129,19 +139,9 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Id" Type="int" />
+          <Property Name="qentity" Type="int" />
         </EntityType>
-        <Association Name="FK_Answer_Questionnaire">
-          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Questionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="QuestioId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CategoryProduct_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
@@ -166,7 +166,7 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Orders_User">
+        <Association Name="FK_Order_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,18 +202,6 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserOrder_Orders">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserOrder">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserOrder_Products">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
@@ -226,9 +214,41 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
@@ -248,13 +268,11 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             <DefiningQuery>SELECT 
     [UserOrder].[ProductId] AS [ProductId], 
     [UserOrder].[OrderId] AS [OrderId], 
-    [UserOrder].[Price] AS [Price]
+    [UserOrder].[Price] AS [Price], 
+    [UserOrder].[Id] AS [Id], 
+    [UserOrder].[qentity] AS [qentity]
     FROM [dbo].[UserOrder] AS [UserOrder]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Answer_Questionnaire" Association="Self.FK_Answer_Questionnaire">
-            <End Role="Questionnaire" EntitySet="Questionnaire" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
           <AssociationSet Name="FK_CategoryProduct_Category" Association="Self.FK_CategoryProduct_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="CategoryProduct" EntitySet="CategoryProduct" />
@@ -263,7 +281,7 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             <End Role="Product" EntitySet="Product" />
             <End Role="CategoryProduct" EntitySet="CategoryProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
@@ -275,10 +293,6 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             <End Role="Taste" EntitySet="Taste" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="UserOrder" EntitySet="UserOrder" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserOrder_Products" Association="Self.FK_UserOrder_Products">
             <End Role="Product" EntitySet="Product" />
             <End Role="UserOrder" EntitySet="UserOrder" />
@@ -288,22 +302,12 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AnswerContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="QuestioId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Questionnaire" Relationship="Self.FK_Answer_Questionnaire" FromRole="Answer" ToRole="Questionnaire" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="Model.CategoryProduct" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
@@ -314,50 +318,17 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="UserOrder" Relationship="Self.FK_UserOrder_Orders" FromRole="Order" ToRole="UserOrder" />
-          <NavigationProperty Name="User" Relationship="Model.FK_Orders_User" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Model.FK_Order_User" FromRole="Order" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Model.FK_Product_ProductsType" FromRole="ProductType" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Questionnaire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestionContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_Questionnaire" FromRole="Questionnaire" ToRole="Answer" />
-        </EntityType>
-        <EntityType Name="Recipe">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="RecipeTypeId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RecipeType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsWine" Type="Boolean" />
+          <Property Name="IsAccessory" Type="Boolean" />
         </EntityType>
         <EntityType Name="Taste">
           <Key>
@@ -366,6 +337,8 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Model.FK_Product_Taste" FromRole="Taste" ToRole="Product" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdTypeWine" Type="Int32" />
         </EntityType>
         <EntityType Name="UserOrder">
           <Key>
@@ -378,19 +351,9 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <Property Name="Price" Type="Double" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_UserOrder_Orders" FromRole="UserOrder" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Model.FK_UserOrder_Products" FromRole="UserOrder" ToRole="Product" />
+          <Property Name="Id" Type="Int32" />
+          <Property Name="qentity" Type="Int32" />
         </EntityType>
-        <Association Name="FK_Answer_Questionnaire">
-          <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Questionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="QuestioId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserOrder_Orders">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
@@ -404,28 +367,14 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Wine_WorldEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Answer" EntityType="Self.Answer" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" />
-          <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" />
-          <EntitySet Name="Recipe" EntityType="Self.Recipe" />
-          <EntitySet Name="RecipeType" EntityType="Self.RecipeType" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Taste" EntityType="Self.Taste" />
           <EntitySet Name="UserOrder" EntityType="Self.UserOrder" />
-          <AssociationSet Name="FK_Answer_Questionnaire" Association="Self.FK_Answer_Questionnaire">
-            <End Role="Questionnaire" EntitySet="Questionnaire" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
             <End Role="Order" EntitySet="Order" />
             <End Role="UserOrder" EntitySet="UserOrder" />
-          </AssociationSet>
-          <EntitySet Name="User" EntityType="Model.User" />
-          <AssociationSet Name="FK_Orders_User" Association="Model.FK_Orders_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <EntitySet Name="Product" EntityType="Model.Product" />
           <AssociationSet Name="FK_Product_ProductsType" Association="Model.FK_Product_ProductsType">
@@ -444,42 +393,96 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <EntitySet Name="RecipeType" EntityType="Model.RecipeType" />
+          <EntitySet Name="Cities" EntityType="Model.Cities" />
+          <EntitySet Name="Recipe" EntityType="Model.Recipe" />
+          <EntitySet Name="User" EntityType="Model.User" />
+          <AssociationSet Name="FK_Order_User" Association="Model.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <EntitySet Name="Answer" EntityType="Model.Answer" />
+          <EntitySet Name="Questionnaire" EntityType="Model.Questionnaire" />
+          <AssociationSet Name="FK_Answer_Questionnaire" Association="Model.FK_Answer_Questionnaire">
+            <End Role="Questionnaire" EntitySet="Questionnaire" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_Answer_ProductType" Association="Model.FK_Answer_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+          <AssociationSet Name="FK_Answer_ProductType1" Association="Model.FK_Answer_ProductType1">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(Model.sp_helpdiagramdefinition1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(Model.sp_helpdiagrams1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Points" Type="Int32" />
-          <Property Name="Mail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="HouseNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Model.FK_Orders_User" FromRole="User" ToRole="Order" />
-        </EntityType>
-        <Association Name="FK_Orders_User">
-          <End Type="Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="Model.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="YearProduction" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -533,22 +536,150 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <End Type="Model.Category" Role="Category" Multiplicity="*" />
           <End Type="Model.Product" Role="Product" Multiplicity="*" />
         </Association>
+        <EntityType Name="RecipeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Recipe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecipeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Points" Type="Int32" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model.FK_Order_User" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Order_User">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerContent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuestioId" Type="Int32" Nullable="false" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Questionnaire" Relationship="Model.FK_Answer_Questionnaire" FromRole="Answer" ToRole="Questionnaire" />
+          <Property Name="IdTypeWine" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Questionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionContent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Answer" Relationship="Model.FK_Answer_Questionnaire" FromRole="Questionnaire" ToRole="Answer" />
+        </EntityType>
+        <Association Name="FK_Answer_Questionnaire">
+          <End Type="Model.Questionnaire" Role="Questionnaire" Multiplicity="1" />
+          <End Type="Model.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_Answer_ProductType">
+          <End Type="Model.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="Model.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdTypeWine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Answer_ProductType1">
+          <End Type="Model.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="Model.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="IdTypeWine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition1_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams1_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Wine_WorldEntities1">
-          <EntitySetMapping Name="Answer">
-            <EntityTypeMapping TypeName="Model.Answer">
-              <MappingFragment StoreEntitySet="Answer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="QuestioId" ColumnName="QuestioId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="Model.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -569,52 +700,18 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <EntitySetMapping Name="ProductType">
             <EntityTypeMapping TypeName="Model.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="IsAccessory" ColumnName="IsAccessory" />
+                <ScalarProperty Name="IsWine" ColumnName="IsWine" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Questionnaire">
-            <EntityTypeMapping TypeName="Model.Questionnaire">
-              <MappingFragment StoreEntitySet="Questionnaire">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Recipe">
-            <EntityTypeMapping TypeName="Model.Recipe">
-              <MappingFragment StoreEntitySet="Recipe">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="RecipeTypeId" ColumnName="RecipeTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RecipeType">
-            <EntityTypeMapping TypeName="Model.RecipeType">
-              <MappingFragment StoreEntitySet="RecipeType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Taste">
             <EntityTypeMapping TypeName="Model.Taste">
               <MappingFragment StoreEntitySet="Taste">
+                <ScalarProperty Name="IdTypeWine" ColumnName="IdTypeWine" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -623,26 +720,11 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
           <EntitySetMapping Name="UserOrder">
             <EntityTypeMapping TypeName="Model.UserOrder">
               <MappingFragment StoreEntitySet="UserOrder">
+                <ScalarProperty Name="qentity" ColumnName="qentity" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="Model.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Points" ColumnName="Points" />
-                <ScalarProperty Name="BornDate" ColumnName="BornDate" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -670,7 +752,103 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
               <ScalarProperty Name="Id" ColumnName="CategoryId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="RecipeType">
+            <EntityTypeMapping TypeName="Model.RecipeType">
+              <MappingFragment StoreEntitySet="RecipeType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="Model.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipe">
+            <EntityTypeMapping TypeName="Model.Recipe">
+              <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="RecipeTypeId" ColumnName="RecipeTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer">
+            <EntityTypeMapping TypeName="Model.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="IdTypeWine" ColumnName="IdTypeWine" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="QuestioId" ColumnName="QuestioId" />
+                <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaire">
+            <EntityTypeMapping TypeName="Model.Questionnaire">
+              <MappingFragment StoreEntitySet="Questionnaire">
+                <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition1_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams1_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="Model.Store.sp_upgraddiagrams" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

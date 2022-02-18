@@ -5,19 +5,21 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AnswerContent" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="AnswerContent" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="QuestioId" Type="int" Nullable="false" />
+    <Property Name="Img" Type="image" />
+    <Property Name="Points" Type="int" />
+    <Property Name="IdTypeWine" Type="int" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="10" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="CategoryProduct">
     <Key>
       <PropertyRef Name="ProductId" />
@@ -25,6 +27,13 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
     </Key>
     <Property Name="ProductId" Type="int" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -39,7 +48,7 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="YearProduction" Type="int" />
     <Property Name="Description" Type="nvarchar(max)" />
@@ -54,31 +63,32 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsWine" Type="bit" />
+    <Property Name="IsAccessory" Type="bit" />
   </EntityType>
   <EntityType Name="Questionnaire">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="QuestionContent" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="QuestionContent" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Recipe">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="RecipeTypeId" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="RecipeType">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -96,25 +106,25 @@ warning 6002: The table/view 'Wine World.dbo.CategoryProduct' does not have a pr
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Img" Type="image" />
+    <Property Name="IdTypeWine" Type="int" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="LastName" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="Phone" Type="varchar" MaxLength="12" />
-    <Property Name="BornDate" Type="datetime" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="12" />
     <Property Name="Points" Type="int" />
-    <Property Name="Mail" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="8" Nullable="false" />
-    <Property Name="Address" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="City" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="HouseNumber" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="City" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UserOrder">
     <Key>
       <PropertyRef Name="ProductId" />
@@ -124,19 +134,9 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
     <Property Name="ProductId" Type="int" Nullable="false" />
     <Property Name="OrderId" Type="int" Nullable="false" />
     <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Id" Type="int" />
+    <Property Name="qentity" Type="int" />
   </EntityType>
-  <Association Name="FK_Answer_Questionnaire">
-    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
-    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Questionnaire">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Answer">
-        <PropertyRef Name="QuestioId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CategoryProduct_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1" />
     <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
@@ -161,7 +161,7 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Orders_User">
+  <Association Name="FK_Order_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
@@ -197,18 +197,6 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserOrder_Orders">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Order">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserOrder">
-        <PropertyRef Name="OrderId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserOrder_Products">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="UserOrder" Type="Self.UserOrder" Multiplicity="*" />
@@ -221,9 +209,41 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
@@ -243,13 +263,11 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
       <DefiningQuery>SELECT 
     [UserOrder].[ProductId] AS [ProductId], 
     [UserOrder].[OrderId] AS [OrderId], 
-    [UserOrder].[Price] AS [Price]
+    [UserOrder].[Price] AS [Price], 
+    [UserOrder].[Id] AS [Id], 
+    [UserOrder].[qentity] AS [qentity]
     FROM [dbo].[UserOrder] AS [UserOrder]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_Answer_Questionnaire" Association="Self.FK_Answer_Questionnaire">
-      <End Role="Questionnaire" EntitySet="Questionnaire" />
-      <End Role="Answer" EntitySet="Answer" />
-    </AssociationSet>
     <AssociationSet Name="FK_CategoryProduct_Category" Association="Self.FK_CategoryProduct_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="CategoryProduct" EntitySet="CategoryProduct" />
@@ -258,7 +276,7 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
       <End Role="Product" EntitySet="Product" />
       <End Role="CategoryProduct" EntitySet="CategoryProduct" />
     </AssociationSet>
-    <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
       <End Role="User" EntitySet="User" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
@@ -269,10 +287,6 @@ warning 6002: The table/view 'Wine World.dbo.UserOrder' does not have a primary 
     <AssociationSet Name="FK_Product_Taste" Association="Self.FK_Product_Taste">
       <End Role="Taste" EntitySet="Taste" />
       <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="UserOrder" EntitySet="UserOrder" />
     </AssociationSet>
     <AssociationSet Name="FK_UserOrder_Products" Association="Self.FK_UserOrder_Products">
       <End Role="Product" EntitySet="Product" />

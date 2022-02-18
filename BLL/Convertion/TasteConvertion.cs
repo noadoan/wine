@@ -7,6 +7,7 @@ using DAL;
 using DTO;
 namespace BLL.Convertion
 {
+
     class TasteConvertion
     {
         public static TasteDto Convert(Taste obj)
@@ -17,6 +18,8 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 Name = obj.Name,
+                Img=obj.Img,
+                IdTypeWine=(int) obj.IdTypeWine
             };
         }
         public static Taste Convert(TasteDto obj)
@@ -27,6 +30,10 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 Name = obj.Name,
+                Img = obj.Img,
+                IdTypeWine = obj.IdTypeWine
+
+
             };
         }
         public static List<Taste> Convert(List<TasteDto> obj)

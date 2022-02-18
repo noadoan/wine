@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-   public class AnswerService
+    public class AnswerService
     {
         public List<AnswerDto> Get()
         {
@@ -25,7 +25,7 @@ namespace BLL
                 return Convertion.AnswerConvertion.Convert(db.Answer.FirstOrDefault(x => x.Id == id));
             }
         }
-       
+
         public AnswerDto Post(AnswerDto AnswerDto)
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
@@ -44,11 +44,27 @@ namespace BLL
                     return null;
 
                 Answer.AnswerContent = AnswerDto.AnswerContent;
-                Answer.Image = AnswerDto.Image;
+                Answer.Img = AnswerDto.Img;
                 Answer.QuestioId = AnswerDto.QuestioId;
+                Answer.IdTypeWine = AnswerDto.IdTypeWine;
                 db.SaveChanges();
                 return Convertion.AnswerConvertion.Convert(Answer);
             }
+
         }
+        public bool GetAnswers(int Id, byte[] vs)
+        {
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
+            {
+                Answer a = db.Answer.FirstOrDefault(x => x.Id == Id);
+                a.Img = vs;
+                db.SaveChanges();
+                return true;
+            }
+
+        }
+
+
+
     }
 }

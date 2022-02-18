@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Wine_WorldEntities1">
-    <EntitySetMapping Name="Answer">
-      <EntityTypeMapping TypeName="Model.Answer">
-        <MappingFragment StoreEntitySet="Answer">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="QuestioId" ColumnName="QuestioId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Category">
       <EntityTypeMapping TypeName="Model.Category">
         <MappingFragment StoreEntitySet="Category">
@@ -31,52 +21,18 @@
     <EntitySetMapping Name="ProductType">
       <EntityTypeMapping TypeName="Model.ProductType">
         <MappingFragment StoreEntitySet="ProductType">
+          <ScalarProperty Name="IsAccessory" ColumnName="IsAccessory" />
+          <ScalarProperty Name="IsWine" ColumnName="IsWine" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Questionnaire">
-      <EntityTypeMapping TypeName="Model.Questionnaire">
-        <MappingFragment StoreEntitySet="Questionnaire">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Recipe">
-      <EntityTypeMapping TypeName="Model.Recipe">
-        <MappingFragment StoreEntitySet="Recipe">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="RecipeTypeId" ColumnName="RecipeTypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RecipeType">
-      <EntityTypeMapping TypeName="Model.RecipeType">
-        <MappingFragment StoreEntitySet="RecipeType">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="Model.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Taste">
       <EntityTypeMapping TypeName="Model.Taste">
         <MappingFragment StoreEntitySet="Taste">
+          <ScalarProperty Name="IdTypeWine" ColumnName="IdTypeWine" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
@@ -85,26 +41,11 @@
     <EntitySetMapping Name="UserOrder">
       <EntityTypeMapping TypeName="Model.UserOrder">
         <MappingFragment StoreEntitySet="UserOrder">
+          <ScalarProperty Name="qentity" ColumnName="qentity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="Price" ColumnName="Price" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="Model.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Points" ColumnName="Points" />
-          <ScalarProperty Name="BornDate" ColumnName="BornDate" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,5 +73,101 @@
         <ScalarProperty Name="Id" ColumnName="CategoryId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="RecipeType">
+      <EntityTypeMapping TypeName="Model.RecipeType">
+        <MappingFragment StoreEntitySet="RecipeType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="Model.Cities">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipe">
+      <EntityTypeMapping TypeName="Model.Recipe">
+        <MappingFragment StoreEntitySet="Recipe">
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="RecipeTypeId" ColumnName="RecipeTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="Model.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="IdTypeWine" ColumnName="IdTypeWine" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+          <ScalarProperty Name="QuestioId" ColumnName="QuestioId" />
+          <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questionnaire">
+      <EntityTypeMapping TypeName="Model.Questionnaire">
+        <MappingFragment StoreEntitySet="Questionnaire">
+          <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="Model.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition1_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="Model.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_helpdiagrams1_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="Model.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

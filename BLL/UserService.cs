@@ -18,6 +18,15 @@ namespace BLL
             }
           
         }
+        public void SetPoints(int Id,int points)
+        {
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
+            {
+                db.User.FirstOrDefault(x => x.Id == Id).Points += points;
+                db.SaveChanges();
+            }
+
+        }
         public UsersDto GetUsers(int id)
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
@@ -25,11 +34,11 @@ namespace BLL
                 return Convertion.UserConvertion.Convert(db.User.FirstOrDefault(x=>x.Id==id));
             }
         }
-        public UsersDto GetUsers(string mail,string Password)
+        public UsersDto GetUsers(string mail,string password)
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
-                return Convertion.UserConvertion.Convert(db.User.FirstOrDefault(x => x.Mail == mail&&x.Password==Password));
+                return Convertion.UserConvertion.Convert(db.User.FirstOrDefault(x => x.Email == mail&&x.Password==password));
             }
         }
         public UsersDto Post(UsersDto usersDto)
@@ -50,7 +59,6 @@ namespace BLL
                     return null;
                 user.LastName = usersDto.LastName;
                 user.FirstName = usersDto.FirstName;
-                user.HouseNumber = usersDto.HouseNumber;
                 db.SaveChanges();
                 return Convertion.UserConvertion.Convert(user);
             }

@@ -17,9 +17,11 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 AnswerContent=obj.AnswerContent,
-                Image=obj.Image,
+                Img=obj.Img,
                 QuestioId=obj.QuestioId,
-              
+                Points=obj.Points==null?0:(int)obj.Points,
+                IdTypeWine=obj.IdTypeWine
+                
             };
         }
         public static Answer Convert(AnswerDto obj)
@@ -30,8 +32,11 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 AnswerContent = obj.AnswerContent,
-                Image = obj.Image,
-                QuestioId = obj.QuestioId
+                Img = obj.Img,
+                Points = obj.Points,
+                QuestioId = obj.QuestioId,
+                IdTypeWine=obj.IdTypeWine
+                
             };
         }
         public static List<Answer> Convert(List<AnswerDto> obj)

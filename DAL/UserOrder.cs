@@ -17,6 +17,8 @@ namespace DAL
         public int ProductId { get; set; }
         public int OrderId { get; set; }
         public double Price { get; set; }
+        public Nullable<int> Id { get; set; }
+        public Nullable<int> qentity { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

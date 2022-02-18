@@ -17,9 +17,8 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 RecipeTypeId = obj.RecipeTypeId,
-                Image = obj.Image,
                 Name = obj.Name,
-
+                ImageUrl = obj.ImageUrl
 
             };
         }
@@ -31,8 +30,8 @@ namespace BLL.Convertion
             {
                 Id = obj.Id,
                 RecipeTypeId = obj.RecipeTypeId,
-                Image = obj.Image,
                 Name = obj.Name,
+                ImageUrl=obj.ImageUrl
             };
         }
         public static List<Recipe> Convert(List<RecipeDto> obj)

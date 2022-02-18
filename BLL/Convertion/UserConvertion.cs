@@ -20,13 +20,11 @@ namespace BLL.Convertion
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Phone = user.Phone,
-                BornDate = user.BornDate,
                 Points = user.Points,
-                Mail = user.Mail,
+                Email = user.Email,
                 Password = user.Password,
                 Address = user.Address,
                 City = user.City,
-                HouseNumber = user.HouseNumber,
             };
         }
         public static User Convert(UsersDto user)
@@ -39,13 +37,11 @@ namespace BLL.Convertion
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Phone = user.Phone,
-                BornDate = user.BornDate,
                 Points = user.Points,
-                Mail = user.Mail,
+                Email = user.Email,
                 Password = user.Password,
                 Address = user.Address,
                 City = user.City,
-                HouseNumber = user.HouseNumber,
             };
         }
         public static List<User> Convert(List<UsersDto> users)

@@ -23,10 +23,20 @@ namespace BLL
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
-                Product p= db.Product.FirstOrDefault(x => x.Id == Id);
+
+                Product p = db.Product.FirstOrDefault(x => x.Id == Id);
                 p.img = vs;
                 db.SaveChanges();
                 return true;
+               
+            }
+
+        }
+        public List<ProductDto> GetProduct(int ProductTypeId,int tasteId)
+        {
+            using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
+            {
+                return Convertion.ProductsConvertion.Convert(db.Product.Where(x => x.ProductTypeId == ProductTypeId &&x.TasteId==tasteId).ToList());
             }
 
         }
@@ -34,7 +44,7 @@ namespace BLL
         {
             using (Wine_WorldEntities1 db = new Wine_WorldEntities1())
             {
-                return Convertion.ProductsConvertion.Convert(db.Product.Where(x=>x.ProductTypeId==productType).ToList());
+                return Convertion.ProductsConvertion.Convert(db.Product.Where(x=>x.ProductTypeId==productType||(productType == -1&&x.ProductType.IsWine.Value)|| (productType == -2 && x.ProductType.IsAccessory.Value)).ToList());
             }
 
         }

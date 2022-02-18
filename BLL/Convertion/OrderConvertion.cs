@@ -18,7 +18,9 @@ namespace BLL.Convertion
                  Id =obj.Id,
                  Date=obj.Date, 
                  UserId=obj.UserId, 
-    };
+                 userOrderDtos =  UserOrderConvertion.Convert(obj.UserOrder.ToList())
+
+            };
         }
         public static Order Convert(OrderDto obj)
         {
@@ -29,6 +31,7 @@ namespace BLL.Convertion
                 Id = obj.Id,
                 Date = obj.Date,
                 UserId = obj.UserId,
+                UserOrder=UserOrderConvertion.Convert(obj.userOrderDtos)
             };
         }
         public static List<Order> Convert(List<OrderDto> users)

@@ -11,6 +11,7 @@ namespace DTO
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public Nullable<int> UserId { get; set; }
+      public  List<UserOrderDto> userOrderDtos { get; set; }
 
         
     }

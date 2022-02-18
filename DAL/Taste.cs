@@ -22,6 +22,8 @@ namespace DAL
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public byte[] Img { get; set; }
+        public Nullable<int> IdTypeWine { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }

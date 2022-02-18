@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerDto.cs" />
-    <Compile Include="CategoryDto.cs" />
+    <Compile Include="Properties\CategoryDto.cs" />
+    <Compile Include="CitiesDto.cs" />
     <Compile Include="OrderDto.cs" />
     <Compile Include="ProductDto.cs" />
     <Compile Include="ProductTypeDto.cs" />

@@ -10,7 +10,7 @@ namespace DTO
     {
         public int Id { get; set; }
         public string QuestionContent { get; set; }
-        public byte[] Image { get; set; }
+        public List<AnswerDto> Answers { get; set; }
 
     }
 }

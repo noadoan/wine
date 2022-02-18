@@ -16,8 +16,10 @@ namespace DAL
     {
         public int Id { get; set; }
         public string AnswerContent { get; set; }
-        public byte[] Image { get; set; }
         public int QuestioId { get; set; }
+        public byte[] Img { get; set; }
+        public Nullable<int> IdTypeWine { get; set; }
+        public Nullable<int> Points { get; set; }
     
         public virtual Questionnaire Questionnaire { get; set; }
     }

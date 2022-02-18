@@ -13,13 +13,7 @@ namespace WebApi_Wine_World.Controllers
     [EnableCors(origins:"*",methods:"*",headers:"*")]
     public class ProductsController : ApiController
     {
-        //Wine_WorldEntities db = new Wine_WorldEntities();
-        //GET: api/Products
-        //public List<ProductsDto> Get()
-        //{
-        //    BLL.UserService
-        //}
-
+        
         ProductService productService = new ProductService();
 
         // GET: api/Products
@@ -30,6 +24,10 @@ namespace WebApi_Wine_World.Controllers
         public List<ProductDto> GetProd(int number)
         {
             return productService.GetProduct(number);
+        }
+        public List<ProductDto> GetProd(int ProductTypeId,int tasteId)
+        {
+            return productService.GetProduct(ProductTypeId,tasteId);
         }
         // GET: api/Products/5
         public string Get(int id)
