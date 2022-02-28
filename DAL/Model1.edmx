@@ -23,16 +23,6 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="CategoryProduct">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="CategoryId" />
-          </Key>
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="Id" />
@@ -62,6 +52,9 @@ warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a pr
           <Property Name="TasteId" Type="int" />
           <Property Name="PercentageAlcohol" Type="float" />
           <Property Name="img" Type="image" />
+          <Property Name="Iskosher" Type="tinyint" />
+          <Property Name="SalePrice" Type="float" />
+          <Property Name="kosherId" Type="int" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -142,30 +135,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           <Property Name="Id" Type="int" />
           <Property Name="qentity" Type="int" />
         </EntityType>
-        <Association Name="FK_CategoryProduct_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CategoryProduct">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CategoryProduct">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -175,6 +144,18 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="kosherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,12 +239,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taste" EntityType="Self.Taste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CategoryProduct" EntityType="Self.CategoryProduct" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CategoryProduct].[ProductId] AS [ProductId], 
-    [CategoryProduct].[CategoryId] AS [CategoryId]
-    FROM [dbo].[CategoryProduct] AS [CategoryProduct]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="UserOrder" EntityType="Self.UserOrder" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [UserOrder].[ProductId] AS [ProductId], 
@@ -273,17 +248,13 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
     [UserOrder].[qentity] AS [qentity]
     FROM [dbo].[UserOrder] AS [UserOrder]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_CategoryProduct_Category" Association="Self.FK_CategoryProduct_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="CategoryProduct" EntitySet="CategoryProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryProduct_Product" Association="Self.FK_CategoryProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="CategoryProduct" EntitySet="CategoryProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductsType" Association="Self.FK_Product_ProductsType">
             <End Role="ProductType" EntitySet="ProductType" />
@@ -308,7 +279,7 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="Model.CategoryProduct" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -326,9 +297,9 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Model.FK_Product_ProductsType" FromRole="ProductType" ToRole="Product" />
           <Property Name="IsWine" Type="Boolean" />
           <Property Name="IsAccessory" Type="Boolean" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_Product_ProductsType" FromRole="ProductType" ToRole="Product" />
         </EntityType>
         <EntityType Name="Taste">
           <Key>
@@ -336,9 +307,9 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Model.FK_Product_Taste" FromRole="Taste" ToRole="Product" />
           <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdTypeWine" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_Product_Taste" FromRole="Taste" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserOrder">
           <Key>
@@ -350,9 +321,9 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_UserOrder_Orders" FromRole="UserOrder" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="Model.FK_UserOrder_Products" FromRole="UserOrder" ToRole="Product" />
           <Property Name="Id" Type="Int32" />
           <Property Name="qentity" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_UserOrder_Products" FromRole="UserOrder" ToRole="Product" />
         </EntityType>
         <Association Name="FK_UserOrder_Orders">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
@@ -375,23 +346,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           <AssociationSet Name="FK_UserOrder_Orders" Association="Self.FK_UserOrder_Orders">
             <End Role="Order" EntitySet="Order" />
             <End Role="UserOrder" EntitySet="UserOrder" />
-          </AssociationSet>
-          <EntitySet Name="Product" EntityType="Model.Product" />
-          <AssociationSet Name="FK_Product_ProductsType" Association="Model.FK_Product_ProductsType">
-            <End Role="ProductType" EntitySet="ProductType" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Taste" Association="Model.FK_Product_Taste">
-            <End Role="Taste" EntitySet="Taste" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserOrder_Products" Association="Model.FK_UserOrder_Products">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="UserOrder" EntitySet="UserOrder" />
-          </AssociationSet>
-          <AssociationSet Name="CategoryProduct" Association="Model.CategoryProduct">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <EntitySet Name="RecipeType" EntityType="Model.RecipeType" />
           <EntitySet Name="Cities" EntityType="Model.Cities" />
@@ -476,66 +430,24 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="Product" EntityType="Model.Product" />
+          <AssociationSet Name="FK_Product_Category" Association="Model.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductsType" Association="Model.FK_Product_ProductsType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Taste" Association="Model.FK_Product_Taste">
+            <End Role="Taste" EntitySet="Taste" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOrder_Products" Association="Model.FK_UserOrder_Products">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="UserOrder" EntitySet="UserOrder" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="YearProduction" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="WineId" Type="Int32" />
-          <Property Name="ProductTypeId" Type="Int32" />
-          <Property Name="TasteId" Type="Int32" />
-          <Property Name="PercentageAlcohol" Type="Double" />
-          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="ProductType" Relationship="Model.FK_Product_ProductsType" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="Taste" Relationship="Model.FK_Product_Taste" FromRole="Product" ToRole="Taste" />
-          <NavigationProperty Name="UserOrder" Relationship="Model.FK_UserOrder_Products" FromRole="Product" ToRole="UserOrder" />
-          <NavigationProperty Name="Category" Relationship="Model.CategoryProduct" FromRole="Product" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_Product_ProductsType">
-          <End Type="Model.ProductType" Role="ProductType" Multiplicity="0..1" />
-          <End Type="Model.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Taste">
-          <End Type="Model.Taste" Role="Taste" Multiplicity="0..1" />
-          <End Type="Model.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Taste">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="TasteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserOrder_Products">
-          <End Type="Model.Product" Role="Product" Multiplicity="1" />
-          <End Type="Model.UserOrder" Role="UserOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserOrder">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CategoryProduct">
-          <End Type="Model.Category" Role="Category" Multiplicity="*" />
-          <End Type="Model.Product" Role="Product" Multiplicity="*" />
-        </Association>
         <EntityType Name="RecipeType">
           <Key>
             <PropertyRef Name="Id" />
@@ -674,6 +586,76 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="YearProduction" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WineId" Type="Int32" />
+          <Property Name="ProductTypeId" Type="Int32" />
+          <Property Name="TasteId" Type="Int32" />
+          <Property Name="PercentageAlcohol" Type="Double" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Iskosher" Type="Byte" />
+          <Property Name="SalePrice" Type="Double" />
+          <Property Name="kosherId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Model.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="ProductType" Relationship="Model.FK_Product_ProductsType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Taste" Relationship="Model.FK_Product_Taste" FromRole="Product" ToRole="Taste" />
+          <NavigationProperty Name="UserOrder" Relationship="Model.FK_UserOrder_Products" FromRole="Product" ToRole="UserOrder" />
+        </EntityType>
+        <Association Name="FK_Product_Category">
+          <End Type="Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="kosherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductsType">
+          <End Type="Model.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Taste">
+          <End Type="Model.Taste" Role="Taste" Multiplicity="0..1" />
+          <End Type="Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taste">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="TasteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOrder_Products">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.UserOrder" Role="UserOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOrder">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -728,30 +710,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="Model.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="img" ColumnName="img" />
-                <ScalarProperty Name="PercentageAlcohol" ColumnName="PercentageAlcohol" />
-                <ScalarProperty Name="TasteId" ColumnName="TasteId" />
-                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
-                <ScalarProperty Name="WineId" ColumnName="WineId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="YearProduction" ColumnName="YearProduction" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="CategoryProduct" TypeName="Model.CategoryProduct" StoreEntitySet="CategoryProduct">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductId" />
-            </EndProperty>
-            <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="CategoryId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="RecipeType">
             <EntityTypeMapping TypeName="Model.RecipeType">
               <MappingFragment StoreEntitySet="RecipeType">
@@ -848,6 +806,25 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="kosherId" ColumnName="kosherId" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Iskosher" ColumnName="Iskosher" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="PercentageAlcohol" ColumnName="PercentageAlcohol" />
+                <ScalarProperty Name="TasteId" ColumnName="TasteId" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="WineId" ColumnName="WineId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="YearProduction" ColumnName="YearProduction" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

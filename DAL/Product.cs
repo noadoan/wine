@@ -18,7 +18,6 @@ namespace DAL
         public Product()
         {
             this.UserOrder = new HashSet<UserOrder>();
-            this.Category = new HashSet<Category>();
         }
     
         public int Id { get; set; }
@@ -31,12 +30,14 @@ namespace DAL
         public Nullable<int> TasteId { get; set; }
         public Nullable<double> PercentageAlcohol { get; set; }
         public byte[] img { get; set; }
+        public Nullable<byte> Iskosher { get; set; }
+        public Nullable<double> SalePrice { get; set; }
+        public Nullable<int> kosherId { get; set; }
     
+        public virtual Category Category { get; set; }
         public virtual ProductType ProductType { get; set; }
         public virtual Taste Taste { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserOrder> UserOrder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category> Category { get; set; }
     }
 }

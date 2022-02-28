@@ -24,7 +24,10 @@ namespace BLL.Convertion
                 ProductTypeId = obj.ProductTypeId,
                 TasteId = obj.TasteId,
                 PercentageAlcohol = obj.PercentageAlcohol,
-                img=obj.img
+                img=obj.img,
+                kosher=obj.Category?.Name,
+                kosherId=obj.kosherId,
+                SalePrice=obj.SalePrice
             };
         }
         public static Product Convert(ProductDto obj)
@@ -43,6 +46,8 @@ namespace BLL.Convertion
                 ProductTypeId = obj.ProductTypeId,
                 TasteId = obj.TasteId,
                 PercentageAlcohol = obj.PercentageAlcohol,
+                SalePrice=obj.SalePrice,
+                kosherId=obj.kosherId
             };
         }
         public static List<Product> Convert(List<ProductDto> obj)

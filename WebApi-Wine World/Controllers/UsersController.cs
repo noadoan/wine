@@ -38,6 +38,20 @@ namespace WebApi_Wine_World.Controllers
             return Ok(UserService.Post(user));
         }
 
+
+
+        //LOGIN/////
+        public IHttpActionResult Post(string mail, string password)
+        {
+              UsersDto u= UserService.GetUsers(mail, password);
+            if (u != null)
+                return Ok(UserService.GetUsers(mail, password));
+
+            return NotFound();
+        }
+
+
+
         // PUT: api/Users/5
         public void Put(int id, [FromBody]string value)
         {

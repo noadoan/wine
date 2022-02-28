@@ -18,16 +18,6 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="10" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="CategoryProduct">
-    <Key>
-      <PropertyRef Name="ProductId" />
-      <PropertyRef Name="CategoryId" />
-    </Key>
-    <Property Name="ProductId" Type="int" Nullable="false" />
-    <Property Name="CategoryId" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Cities">
     <Key>
       <PropertyRef Name="Id" />
@@ -57,6 +47,9 @@ warning 6002: The table/view 'Wine_World.dbo.CategoryProduct' does not have a pr
     <Property Name="TasteId" Type="int" />
     <Property Name="PercentageAlcohol" Type="float" />
     <Property Name="img" Type="image" />
+    <Property Name="Iskosher" Type="tinyint" />
+    <Property Name="SalePrice" Type="float" />
+    <Property Name="kosherId" Type="int" />
   </EntityType>
   <EntityType Name="ProductType">
     <Key>
@@ -137,30 +130,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
     <Property Name="Id" Type="int" />
     <Property Name="qentity" Type="int" />
   </EntityType>
-  <Association Name="FK_CategoryProduct_Category">
-    <End Role="Category" Type="Self.Category" Multiplicity="1" />
-    <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Category">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CategoryProduct">
-        <PropertyRef Name="CategoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CategoryProduct_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="CategoryProduct" Type="Self.CategoryProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CategoryProduct">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Order_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -170,6 +139,18 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="kosherId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -253,12 +234,6 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Taste" EntityType="Self.Taste" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CategoryProduct" EntityType="Self.CategoryProduct" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [CategoryProduct].[ProductId] AS [ProductId], 
-    [CategoryProduct].[CategoryId] AS [CategoryId]
-    FROM [dbo].[CategoryProduct] AS [CategoryProduct]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="UserOrder" EntityType="Self.UserOrder" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [UserOrder].[ProductId] AS [ProductId], 
@@ -268,17 +243,13 @@ warning 6002: The table/view 'Wine_World.dbo.UserOrder' does not have a primary 
     [UserOrder].[qentity] AS [qentity]
     FROM [dbo].[UserOrder] AS [UserOrder]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_CategoryProduct_Category" Association="Self.FK_CategoryProduct_Category">
-      <End Role="Category" EntitySet="Category" />
-      <End Role="CategoryProduct" EntitySet="CategoryProduct" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CategoryProduct_Product" Association="Self.FK_CategoryProduct_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="CategoryProduct" EntitySet="CategoryProduct" />
-    </AssociationSet>
     <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
       <End Role="User" EntitySet="User" />
       <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_ProductsType" Association="Self.FK_Product_ProductsType">
       <End Role="ProductType" EntitySet="ProductType" />

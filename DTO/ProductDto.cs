@@ -16,6 +16,9 @@ namespace DTO
         public Nullable<int> TasteId { get; set; }
         public Nullable<double> PercentageAlcohol { get; set; }
         public byte[] img { get; set; }
+        public Nullable<double> SalePrice { get; set; }
+        public Nullable<int> kosherId { get; set; }
+        public string kosher { get; set; }
 
     }
 }
